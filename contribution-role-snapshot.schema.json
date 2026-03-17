@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/contribution-role-snapshot.schema.json",
+  "title": "ContributionRoleSnapshot",
+  "description": "Role-based symbolic contribution snapshot for Inzei Kozomaru x K-ROS Mini Demo v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "trace_id",
+    "roles"
+  ],
+  "properties": {
+    "trace_id": {
+      "type": "string",
+      "pattern": "^trc_[0-9]{8}_[0-9]{4,}$",
+      "description": "Trace record identifier."
+    },
+    "roles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/roleEntry"
+      }
+    }
+  },
+  "$defs": {
+    "roleType": {
+      "type": "string",
+      "enum": [
+        "origin",
+        "structure",
+        "derivative",
+        "translation",
+        "editing",
+        "circulation",
+        "preservation",
+        "catalyst",
+        "naming",
+        "integration",
+        "mediation",
+        "other"
+      ]
+    },
+    "roleEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role_type",
+        "label",
+        "points"
+      ],
+      "properties": {
+        "role_type": {
+          "$ref": "#/$defs/roleType"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable label for the role."
+        },
+        "points": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Symbolic points assigned to this role."
+        }
+      }
+    }
+  }
+}
