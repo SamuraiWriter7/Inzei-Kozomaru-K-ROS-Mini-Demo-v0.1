@@ -1,0 +1,578 @@
+spec:
+  name: Inzei Kozomaru x K-ROS Mini Demo
+  version: "0.1"
+  status: draft
+  layer_type: minimum_operational_prototype
+  description: >
+    A minimal prototype that combines GPT-based structural value reading
+    with a trace registry layer in order to preserve and revisit
+    value core, trace, symbolic allocation, and circulation paths.
+
+document_info:
+  purpose: >
+    Define the minimum technical and conceptual specification for integrating
+    Inzei Kozomaru as a value-flow analysis layer with K-ROS Mini as a trace registry layer.
+  scope:
+    includes:
+      - structural value reading
+      - trace recording
+      - symbolic contribution allocation
+      - circulation suggestion
+      - related trace lookup
+    excludes:
+      - legal copyright adjudication
+      - real payment execution
+      - automated contract enforcement
+      - blockchain settlement
+      - full-scale civilizational routing
+      - definitive origin certification
+
+system_identity:
+  title: Inzei Kozomaru x K-ROS Mini Demo v0.1
+  short_definition: >
+    A minimum operational cell that records value core, trace,
+    symbolic allocation, and circulation paths through GPT analysis
+    and registry storage.
+  positioning:
+    gpt_layer: value reading and structural evaluation
+    registry_layer: trace preservation and relation lookup
+  operating_principle:
+    - value_core
+    - trace
+    - symbolic_allocation
+    - circulation
+
+core_goals:
+  - identify_value_core
+  - record_trace
+  - visualize_contribution
+  - suggest_circulation
+  - support_revisitability
+
+architecture:
+  pattern: two_layer_system
+  layers:
+    - name: gpt_analysis_layer
+      label: Inzei Kozomaru
+      role: >
+        Reads inputs and generates structured evaluation including
+        value core, type classification, structural DNA, origin candidates,
+        symbolic allocation, and circulation paths.
+    - name: registry_layer
+      label: K-ROS Mini
+      role: >
+        Stores trace records, issues trace identifiers, supports related trace lookup,
+        and preserves symbolic allocation snapshots.
+  flow:
+    - user_input
+    - gpt_analysis
+    - structured_output_json
+    - registry_api
+    - trace_storage
+    - related_trace_lookup
+
+supported_inputs:
+  accepted_types:
+    - plain_text
+    - article_draft
+    - book_fragment
+    - conversation_log
+    - concept_note
+    - system_prompt
+    - yaml
+    - json
+    - graphviz
+    - lightweight_specification
+  rejected_or_out_of_scope:
+    - raw_image_only_inputs
+    - audio_only_inputs
+    - legal_case_adjudication
+    - autonomous_payment_execution
+    - blockchain_native_settlement
+
+use_cases:
+  - id: UC-01
+    name: concept_analysis
+    description: Analyze a concept note and identify its value core and circulation paths.
+  - id: UC-02
+    name: document_review
+    description: Analyze an article, chapter, README, or specification for structure and origin potential.
+  - id: UC-03
+    name: conversation_trace
+    description: Extract value core, structural DNA, and derivative potential from a conversation log.
+  - id: UC-04
+    name: continuity_tracking
+    description: Compare a new input with stored traces and return related or derivative candidates.
+  - id: UC-05
+    name: technical_review
+    description: Analyze YAML, JSON, prompts, or protocol drafts with implementation-oriented detail.
+
+components:
+  - name: analyzer_engine
+    layer: gpt_analysis_layer
+    role: Generate structured evaluation from user input.
+  - name: trace_registry_api
+    layer: registry_layer
+    role: Accept structured evaluation payloads and store them with trace_id.
+  - name: related_trace_lookup
+    layer: registry_layer
+    role: Search prior traces using lightweight similarity signals.
+  - name: contribution_snapshot_store
+    layer: registry_layer
+    role: Preserve symbolic contribution snapshots.
+  - name: circulation_suggestion_store
+    layer: registry_layer
+    role: Preserve suggested circulation paths for later reference.
+
+processing_flows:
+  new_input_flow:
+    steps:
+      - receive_input
+      - analyze_with_inzei_kozomaru
+      - generate_structured_output
+      - issue_trace_id
+      - store_trace_record
+      - return_result_to_user
+  related_lookup_flow:
+    steps:
+      - extract_hash_and_features
+      - search_registry
+      - return_related_trace_candidates
+      - optionally_link_traces
+  reevaluation_flow:
+    steps:
+      - retrieve_existing_trace
+      - compare_with_new_input
+      - identify_revision_or_derivation
+      - store_updated_snapshot
+
+data_model:
+  entities:
+    TraceRecord:
+      description: Main record storing structural evaluation output.
+      required_fields:
+        - trace_id
+        - created_at
+        - input_hash
+        - value_core
+        - primary_type
+        - uncertainty_flags
+        - structure_dna
+        - symbolic_allocation
+        - circulation_paths
+      optional_fields:
+        - title
+        - input_type
+        - raw_input_excerpt
+        - secondary_types
+        - origin_candidates
+        - related_trace_ids
+        - implementation_notes
+        - status
+    ContributionRoleSnapshot:
+      description: Role-based symbolic allocation record.
+      required_fields:
+        - trace_id
+        - roles
+    RelatedTraceLink:
+      description: Lightweight directional relation between two traces.
+      required_fields:
+        - source_trace_id
+        - target_trace_id
+        - relation_type
+        - confidence
+        - reason
+
+trace_record_schema:
+  trace_id:
+    type: string
+    example: trc_20260317_0001
+  created_at:
+    type: datetime
+    example: "2026-03-17T10:30:00+09:00"
+  input_hash:
+    type: string
+    example: sha256_xxxxx
+  title:
+    type: string
+    nullable: true
+  input_type:
+    type: string
+    example: article_draft
+  raw_input_excerpt:
+    type: string
+    nullable: true
+  analysis_mode:
+    type: string
+    enum:
+      - standard
+      - detailed
+      - compact
+  value_core:
+    type: string
+  primary_type:
+    type: string
+  secondary_types:
+    type: list
+    items: string
+  uncertainty_flags:
+    type: map
+    allowed_values:
+      - confirmed
+      - strong_candidate
+      - inferred
+      - unknown
+  structure_dna:
+    type: list
+    items: string
+  origin_candidates:
+    type: map
+    keys:
+      - confirmed
+      - strong_candidate
+      - inferred
+      - unknown
+  symbolic_allocation:
+    type: map
+  circulation_paths:
+    type: list
+    items: string
+  related_trace_ids:
+    type: list
+    items: string
+  status:
+    type: string
+    example: active
+
+contribution_role_snapshot_schema:
+  trace_id:
+    type: string
+  roles:
+    type: list
+    items:
+      role_type: string
+      label: string
+      points: integer
+
+related_trace_link_schema:
+  source_trace_id:
+    type: string
+  target_trace_id:
+    type: string
+  relation_type:
+    type: string
+  confidence:
+    type: string
+    allowed_values:
+      - confirmed
+      - strong_candidate
+      - inferred
+      - unknown
+  reason:
+    type: string
+
+type_classification:
+  primary_type_allowed:
+    - origin
+    - structure
+    - derivative
+    - translation
+    - editing
+    - circulation
+    - preservation
+    - catalyst
+    - mixed
+  definitions:
+    origin: strong initiating question or conceptual seed
+    structure: strong framework, design, or architecture
+    derivative: meaningful development from prior structures
+    translation: transformation of complex ideas into another readable form
+    editing: organization of scattered elements into coherence
+    circulation: creation of movement into new contexts or audiences
+    preservation: recording and stabilizing value for later use
+    catalyst: small input that triggers later development
+    mixed: combination of multiple types
+
+uncertainty_model:
+  labels:
+    - confirmed
+    - strong_candidate
+    - inferred
+    - unknown
+  applies_to:
+    - structure
+    - origin
+    - novelty
+    - implementation_depth
+    - derivative_relation
+  principle: >
+    No origin, novelty, or derivative claim should be presented with false certainty.
+
+symbolic_point_system:
+  mode: symbolic_only
+  note: >
+    Points are explanatory and structural, not legal or financial.
+  primary_categories:
+    - origin_points
+    - structure_points
+    - derivative_points
+    - circulation_points
+    - preservation_points
+  optional_categories:
+    - translation_points
+    - integration_points
+    - editing_points
+    - catalyst_points
+    - naming_points
+    - source_return_reserve
+  allocation_rules:
+    - prioritize_structural_contribution_over_popularity
+    - explain_why_points_arise
+    - do_not_reward_imitation_as_origin
+    - recognize_hidden_roles_when_supported
+    - avoid_winner_take_all
+    - allow_reserve_for_upstream_sources
+    - use_ranges_if_precision_is_low
+  normalization:
+    total_points_example: 100
+    mandatory: false
+
+structure_dna:
+  definition: >
+    Reusable structural units extracted from an input in short label form.
+  extraction_targets:
+    - question_core
+    - tension_axis
+    - integration_principle
+    - allocation_principle
+    - circulation_principle
+    - recording_principle
+    - response_mode
+    - world_vocabulary
+    - reimplementable_skeleton
+  rules:
+    - keep_labels_short
+    - avoid_long_explanatory_sentences
+    - prefer_reusable_phrasing
+
+signature_candidates:
+  allowed: true
+  definition: >
+    Structural identifiers for trace readability, not legal signatures.
+  examples:
+    - TRACE-FLOW-01
+    - ORIGIN-MAP-ALPHA
+    - VALUE-CIRC-02
+    - STRUCT-RETURN-01
+  rule: must_include_short_meaning_explanation
+
+gpt_output_contract:
+  description: >
+    Inzei Kozomaru should be able to produce both natural language output
+    and a structured machine-readable analysis payload.
+  payload_fields:
+    - value_core
+    - primary_type
+    - secondary_types
+    - uncertainty_flags
+    - structure_dna
+    - origin_candidates
+    - symbolic_allocation
+    - circulation_paths
+    - implementation_notes
+  implementation_notes:
+    fields:
+      - reimplementable_units
+      - undefined_areas
+      - failure_modes
+      - next_spec_to_lock
+
+api:
+  base_entities:
+    - traces
+    - trace_links
+  endpoints:
+    - method: POST
+      path: /traces
+      purpose: register_new_trace
+    - method: GET
+      path: /traces/{trace_id}
+      purpose: fetch_trace
+    - method: POST
+      path: /traces/search-related
+      purpose: search_related_traces
+    - method: POST
+      path: /traces/link
+      purpose: store_trace_relation
+
+api_examples:
+  post_traces_request:
+    input_hash: sha256_xxxxx
+    title: optional
+    input_type: article_draft
+    analysis_payload:
+      value_core: Reframing AI as a civilizational OS
+      primary_type: structure
+  post_traces_response:
+    trace_id: trc_20260317_0001
+    status: stored
+  search_related_request:
+    input_hash: sha256_xxxxx
+    structure_dna:
+      - Treats questions as origins
+      - Three-layer integration
+    value_core: Reframing AI as a civilizational OS
+  search_related_response:
+    related:
+      - trace_id: trc_20260310_0008
+        relation_type: derivative_candidate
+        confidence: strong_candidate
+
+storage:
+  suggested_tables:
+    - name: traces
+      fields:
+        - trace_id
+        - created_at
+        - input_hash
+        - title
+        - input_type
+        - value_core
+        - primary_type
+        - secondary_types
+        - raw_input_excerpt
+        - status
+    - name: trace_analysis
+      fields:
+        - trace_id
+        - uncertainty_flags_json
+        - structure_dna_json
+        - origin_candidates_json
+        - symbolic_allocation_json
+        - circulation_paths_json
+        - implementation_notes_json
+    - name: trace_links
+      fields:
+        - link_id
+        - source_trace_id
+        - target_trace_id
+        - relation_type
+        - confidence
+        - reason
+
+related_trace_matching:
+  version: "0.1"
+  strategy: lightweight_rule_based
+  signals:
+    - value_core_keyword_overlap
+    - structure_dna_overlap_count
+    - primary_secondary_type_match
+    - title_keyword_match
+    - input_hash_duplicate_check
+  relation_types:
+    - duplicate
+    - revision
+    - derivative_candidate
+    - thematic_neighbor
+    - same_seed_cluster
+
+output_modes:
+  user_facing:
+    - standard
+    - detailed
+    - compact
+  api_facing:
+    - structured_json_required
+  rule: >
+    Structured output is prioritized for registry compatibility even when
+    natural language output is also returned.
+
+implementation_notes:
+  reimplementable_units:
+    - trace_id_generation
+    - structured_analysis_payload
+    - registry_write
+    - related_trace_search
+    - symbolic_allocation_snapshot
+  undefined_areas:
+    - exact_similarity_scoring
+    - contributor_identity_verification
+    - multi-project_weight_reallocation
+    - temporal_decay_rules
+    - formal_ksd_standard
+  failure_modes:
+    - origin_over_inference
+    - excessive_trace_linking
+    - point_scores_detaching_from_reasoning
+    - unstable_structure_dna_labels
+    - over-interpretation_of_ambiguous_inputs
+  next_specs_to_lock:
+    - structure_dna_label_policy
+    - symbolic_allocation_policy
+    - relation_type_definitions
+    - trace_id_and_ksd_naming_policy
+    - implementation_notes_trigger_conditions
+
+development_phases:
+  - phase: 0
+    name: prompt_and_output_stabilization
+    tasks:
+      - fix_prompt_behavior
+      - stabilize_json_output
+      - validate_single_input_analysis
+  - phase: 1
+    name: registry_api_minimum
+    tasks:
+      - implement_post_traces
+      - implement_get_trace
+      - validate_trace_storage
+  - phase: 2
+    name: relation_lookup
+    tasks:
+      - implement_search_related
+      - implement_trace_links
+      - validate_related_candidates
+  - phase: 3
+    name: minimal_ui
+    tasks:
+      - trace_list_view
+      - relation_view
+      - symbolic_allocation_view
+  - phase: 4
+    name: relation_scoring_upgrade
+    tasks:
+      - evaluate_embedding_search
+      - formalize_ksd
+      - support_semi_automatic_reevaluation
+
+security_and_ethics:
+  principles:
+    - no_real_name_requirement_in_v0_1
+    - avoid_legal_judgment_like_wording
+    - clearly_mark_symbolic_points_as_non_financial
+    - treat_output_as_decision_support_not_enforcement
+    - allow_trace_invalidation_or_deletion
+  warnings:
+    - symbolic_allocation_must_not_be_presented_as_ownership
+    - trace_relations_must_not_be_presented_as_proof
+
+success_criteria:
+  - stable_structured_analysis_per_input
+  - trace_id_generation_and_storage
+  - related_trace_candidate_return
+  - symbolic_allocation_snapshot_preservation
+  - at_least_one_meaningful_circulation_path_per_input
+
+failure_conditions:
+  - unstable_structure_dna_labels
+  - noisy_related_trace_results
+  - inconsistent_symbolic_allocation
+  - weak_uncertainty_labeling
+  - generic_circulation_suggestions_without_context
+
+final_definition:
+  statement: >
+    Inzei Kozomaru x K-ROS Mini Demo v0.1 is a minimum operational prototype
+    that combines GPT-based structural value reading with registry-based trace recording,
+    allowing value core, trace, symbolic allocation, and circulation paths
+    to be stored and revisited as the first demonstrative cell of a K-ROS-like system.
