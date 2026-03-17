@@ -1,0 +1,299 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/trace-record.schema.json",
+  "title": "TraceRecord",
+  "description": "Schema for Inzei Kozomaru x K-ROS Mini Demo v0.1 trace record.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "trace_id",
+    "created_at",
+    "input_hash",
+    "value_core",
+    "primary_type",
+    "uncertainty_flags",
+    "structure_dna",
+    "symbolic_allocation",
+    "circulation_paths"
+  ],
+  "properties": {
+    "trace_id": {
+      "type": "string",
+      "title": "Trace ID",
+      "description": "Unique identifier for the trace record.",
+      "pattern": "^trc_[0-9]{8}_[0-9]{4,}$",
+      "examples": ["trc_20260317_0001"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At",
+      "description": "ISO 8601 timestamp when the trace was created.",
+      "examples": ["2026-03-17T10:30:00+09:00"]
+    },
+    "input_hash": {
+      "type": "string",
+      "title": "Input Hash",
+      "description": "Hash of the original input. SHA-256 recommended.",
+      "minLength": 8,
+      "examples": ["sha256_xxxxx"]
+    },
+    "title": {
+      "type": "string",
+      "title": "Title",
+      "description": "Optional human-readable title for the input.",
+      "minLength": 1
+    },
+    "input_type": {
+      "type": "string",
+      "title": "Input Type",
+      "description": "High-level classification of the input format.",
+      "enum": [
+        "plain_text",
+        "article_draft",
+        "book_fragment",
+        "conversation_log",
+        "concept_note",
+        "system_prompt",
+        "yaml",
+        "json",
+        "graphviz",
+        "lightweight_specification",
+        "other"
+      ]
+    },
+    "raw_input_excerpt": {
+      "type": "string",
+      "title": "Raw Input Excerpt",
+      "description": "Optional excerpt from the original input."
+    },
+    "analysis_mode": {
+      "type": "string",
+      "title": "Analysis Mode",
+      "description": "Output mode used by Inzei Kozomaru.",
+      "enum": ["standard", "detailed", "compact"]
+    },
+    "value_core": {
+      "type": "string",
+      "title": "Value Core",
+      "description": "Core value statement extracted from the input.",
+      "minLength": 1
+    },
+    "primary_type": {
+      "$ref": "#/$defs/inputType"
+    },
+    "secondary_types": {
+      "type": "array",
+      "title": "Secondary Types",
+      "description": "Optional secondary classifications.",
+      "items": {
+        "$ref": "#/$defs/inputType"
+      },
+      "uniqueItems": true
+    },
+    "uncertainty_flags": {
+      "$ref": "#/$defs/uncertaintyFlags"
+    },
+    "structure_dna": {
+      "type": "array",
+      "title": "Structure DNA",
+      "description": "Reusable structural labels extracted from the input.",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "origin_candidates": {
+      "$ref": "#/$defs/originCandidates"
+    },
+    "symbolic_allocation": {
+      "$ref": "#/$defs/symbolicAllocation"
+    },
+    "circulation_paths": {
+      "type": "array",
+      "title": "Circulation Paths",
+      "description": "Suggested next destinations or formats for value flow.",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "related_trace_ids": {
+      "type": "array",
+      "title": "Related Trace IDs",
+      "description": "Optional list of related trace identifiers.",
+      "items": {
+        "type": "string",
+        "pattern": "^trc_[0-9]{8}_[0-9]{4,}$"
+      },
+      "uniqueItems": true
+    },
+    "implementation_notes": {
+      "$ref": "#/$defs/implementationNotes"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "description": "Lifecycle state of the trace record.",
+      "enum": ["active", "archived", "invalidated", "deleted"]
+    }
+  },
+  "$defs": {
+    "inputType": {
+      "type": "string",
+      "title": "Input Classification Type",
+      "enum": [
+        "origin",
+        "structure",
+        "derivative",
+        "translation",
+        "editing",
+        "circulation",
+        "preservation",
+        "catalyst",
+        "mixed"
+      ]
+    },
+    "uncertaintyLevel": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "strong_candidate",
+        "inferred",
+        "unknown"
+      ]
+    },
+    "uncertaintyFlags": {
+      "type": "object",
+      "title": "Uncertainty Flags",
+      "description": "Uncertainty labels for major analytical dimensions.",
+      "additionalProperties": false,
+      "required": [
+        "structure",
+        "origin",
+        "novelty",
+        "implementation_depth"
+      ],
+      "properties": {
+        "structure": {
+          "$ref": "#/$defs/uncertaintyLevel"
+        },
+        "origin": {
+          "$ref": "#/$defs/uncertaintyLevel"
+        },
+        "novelty": {
+          "$ref": "#/$defs/uncertaintyLevel"
+        },
+        "implementation_depth": {
+          "$ref": "#/$defs/uncertaintyLevel"
+        },
+        "derivative_relation": {
+          "$ref": "#/$defs/uncertaintyLevel"
+        }
+      }
+    },
+    "originCandidates": {
+      "type": "object",
+      "title": "Origin Candidates",
+      "description": "Possible origin sources grouped by certainty level.",
+      "additionalProperties": false,
+      "properties": {
+        "confirmed": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "strong_candidate": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "inferred": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "unknown": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "symbolicAllocation": {
+      "type": "object",
+      "title": "Symbolic Allocation",
+      "description": "Symbolic point allocation model. Explanatory, not legal or financial.",
+      "additionalProperties": false,
+      "properties": {
+        "origin_points": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "structure_points": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "derivative_points": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "circulation_points": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "preservation_points": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "translation_points": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "integration_points": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "editing_points": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "catalyst_points": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "naming_points": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_return_reserve": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "minProperties": 1
+    },
+    "implementationNotes": {
+      "type": "object",
+      "title": "Implementation Notes",
+      "description": "Implementation-oriented notes used especially in technical contexts.",
+      "additionalProperties": false,
+      "properties": {
+        "reimplementable_units": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "undefined_areas": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "failure_modes": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "next_spec_to_lock": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    }
+  }
+}
